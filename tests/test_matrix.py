@@ -1,14 +1,14 @@
 from pyformlang.cfg import CFG, Variable
 from project.graph_utils import create_two_cycles_graph
-from project.cfpq.hellings import hellings  # , hellings_context_free_path_query
+from project.cfpq.matrix import matrix  # , matrix_context_free_path_query
 
 
-def test_hellings():
+def test_matrix():
     graph = create_two_cycles_graph((5, 5), ("a", "b"), "/tmp/graph")
 
     grammar = CFG.from_text("S -> a S b S | epsilon")
 
-    assert hellings(graph, grammar) == {
+    assert matrix(graph, grammar) == {
         (0, Variable("S"), 0),
         (1, Variable("S"), 1),
         (2, Variable("S"), 2),
@@ -57,11 +57,11 @@ def test_hellings():
     }
 
 
-# def test_cfpq_hellings():
+# def test_cfpq_matrix():
 #     graph = create_two_cycles_graph((5, 5), ("a", "b"), "/tmp/graph")
 #     grammar = CFG.from_text("S -> a S b S | epsilon")
 
-#     assert hellings_context_free_path_query(graph, grammar) == {
+#     assert matrix_context_free_path_query(graph, grammar) == {
 #         (0, 0),
 #         (1, 1),
 #         (2, 2),

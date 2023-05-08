@@ -1,6 +1,8 @@
 from pyformlang.cfg import CFG, Variable
 from project.graph_utils import create_two_cycles_graph
-from project.cfpq.hellings import hellings  # , hellings_context_free_path_query
+from project.cfpq.hellings import hellings
+from project.cfpq.matrix import matrix
+from project.cfpq.context_free_path_query import context_free_path_query
 
 
 def test_hellings():
@@ -57,25 +59,28 @@ def test_hellings():
     }
 
 
-# def test_cfpq_hellings():
-#     graph = create_two_cycles_graph((5, 5), ("a", "b"), "/tmp/graph")
-#     grammar = CFG.from_text("S -> a S b S | epsilon")
+def test_cfpq_hellings():
+    graph = create_two_cycles_graph((5, 5), ("a", "b"), "/tmp/graph")
+    grammar = CFG.from_text("S -> a S b S | epsilon")
 
-#     assert hellings_context_free_path_query(graph, grammar) == {
-#         (0, 0),
-#         (1, 1),
-#         (2, 2),
-#         (3, 3),
-#         (4, 4),
-#         (5, 5),
-#         (6, 6),
-#         (7, 7),
-#         (8, 8),
-#         (9, 9),
-#         (10, 10),
-#         (1, 10),
-#         (2, 9),
-#         (3, 8),
-#         (4, 7),
-#         (5, 6),
-#     }
+    expected = {
+        (0, 0),
+        (1, 1),
+        (2, 2),
+        (3, 3),
+        (4, 4),
+        (5, 5),
+        (6, 6),
+        (7, 7),
+        (8, 8),
+        (9, 9),
+        (10, 10),
+        (1, 10),
+        (2, 9),
+        (3, 8),
+        (4, 7),
+        (5, 6),
+    }
+
+    assert context_free_path_query(hellings, graph, grammar) == expected
+    assert context_free_path_query(matrix, graph, grammar) == expected

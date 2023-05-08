@@ -1,11 +1,10 @@
-from pyformlang.cfg import CFG, Epsilon, Terminal, Variable
 from networkx import MultiDiGraph
+from pyformlang.cfg import CFG, Variable
+
 from project.cfg_utils import cfg2wcnf, from_file
-import pathlib
-from typing import List
 
 
-def hellings(graph: MultiDiGraph, cfg):
+def hellings(graph: MultiDiGraph, cfg: CFG):
     """
     Perform Hellings reachability algorithm
 
@@ -61,40 +60,3 @@ def hellings(graph: MultiDiGraph, cfg):
         [queue.append(t) for t in next_res]
 
     return res
-
-
-def hellings_context_free_path_query(
-    graph: MultiDiGraph,
-    cfg: CFG,
-    start_states: List[any] = None,
-    final_states: List[any] = None,
-    nonterm: Variable = None,
-):
-    """
-    Queries given graph reachability problem for a given set of start and end ndoes,
-    and a given nonterminal using the Hellings algorithm
-
-    Args:
-        graph: the graph to query
-        cfg: context-free grammar
-        start_states: start nodes of the given graph
-        final_states: final nodes of the given graph
-        nonterm: nonterminal
-
-    Returns:
-        set of node pairs
-    """
-    if start_states is None:
-        start_states = set(graph.nodes)
-
-    if final_states is None:
-        final_states = set(graph.nodes)
-
-    if nonterm is None:
-        nonterm = cfg.start_symbol
-
-    return {
-        (v, u)
-        for v, n, u in hellings(graph, cfg)
-        if n == nonterm and v in start_states and u in final_states
-    }
