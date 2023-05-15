@@ -6,7 +6,6 @@ from pydot import *
 
 from project.lang.antlrgen.langLexer import langLexer
 from project.lang.antlrgen.langParser import langParser
-from project.lang.antlrgen.langVisitor import langVisitor
 from project.lang.listener import Listener
 
 
