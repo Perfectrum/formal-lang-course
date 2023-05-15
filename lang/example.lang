@@ -1,0 +1,13 @@
+g = load "graph.dot";
+print g.labels;
+
+g = set {95:100} as finals of set g.vertices as starts of g;
+g = add 90 to g starts;
+
+# short version
+g = g.vertices ^~ {95:100} ~^ g;
+g = g +~ {90};
+
+print reachable in g;
+print {1:50} ^~ g & {50:100} ^~ g;
+print map g.vertices with @ v -> v in g.starts;
