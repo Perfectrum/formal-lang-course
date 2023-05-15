@@ -27,6 +27,9 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
+      
+      - name: Generate parser
+        run: python ./scripts/antlr_gen.py
 
       - name: Run tests
         run: python ./scripts/run_tests.py
