@@ -1,6 +1,5 @@
 import pytest
 
-# from project.graph_regular_query import regex2dfa
 from pyformlang.cfg import CFG, Variable
 from pyformlang.regular_expression import Regex
 
