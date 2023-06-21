@@ -167,7 +167,7 @@ def get_reachable_vertices(
             used |= cur
 
             front = dok_matrix((len(graph_mapping), len(regex_mapping)), dtype=np.bool_)
-            for (source, dest) in cur:
+            for source, dest in cur:
                 front[dest, source] = True
             front = vstack(
                 (identity(len(regex_mapping), dtype=np.bool_), front), format="csr"

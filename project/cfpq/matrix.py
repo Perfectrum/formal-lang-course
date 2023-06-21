@@ -36,7 +36,7 @@ def matrix(graph: MultiDiGraph, cfg: CFG):
             if isinstance(prod.body[0], Terminal):
                 prod.body[0] = prod.body[0].value
 
-                for (u, v, label) in graph.edges(data="label"):
+                for u, v, label in graph.edges(data="label"):
                     if label == prod.body[0]:
                         matrix[u, v] = 1
 
