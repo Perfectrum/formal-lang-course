@@ -16,7 +16,6 @@ def get_graph_info(name: str) -> Dict[str, int]:
 def create_two_cycles_graph(
     nodes_numbers: (int, int), labels: (str, str), path: pathlib.Path
 ) -> None:
-
     graph = cfpq_data.labeled_two_cycles_graph(
         nodes_numbers[0], nodes_numbers[1], labels=labels
     )

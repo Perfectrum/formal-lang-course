@@ -5,6 +5,10 @@ import pathlib
 from typing import Dict
 
 
+def get_graph(name: str):
+    return cfpq_data.graph_from_csv(cfpq_data.download(name))
+
+
 def get_graph_info(name: str) -> Dict[str, int]:
     """
     Return the number of vertices, edges, and edges labels
@@ -16,7 +20,7 @@ def get_graph_info(name: str) -> Dict[str, int]:
     Returns:
         dicttionary with number of nodes, edges and its labels
     """
-    graph = cfpq_data.graph_from_csv(cfpq_data.download(name))
+    graph = get_graph(name)
     return {
         "number_of_nodes": graph.number_of_nodes(),
         "number_of_edges": graph.number_of_edges(),
